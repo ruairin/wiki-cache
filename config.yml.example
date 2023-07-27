@@ -1,0 +1,14 @@
+# connection parameters for mysql server
+# which is used for the cache functionality
+postgres:
+    # VM host and port
+    host: 127.0.0.1
+    port: 5432
+    # The name of the database to read
+    db_name: wikicache
+    # The name of the database table
+    db_table: cache
+    # MySQL server Access credentials
+    username: postgres
+    password: 
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wikipedia Search Assistant</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!--         CSS only-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="p-5 text-center">
+    <div class="pagetitle"><h1>Wikipedia Search Assistant</h1></div>
+</div>
+
+<div class="container">
+    <p class="text-center">
+    Welcome to the wikipedia search assistant.
+    Enter a search term below to display a summary of relevant Wikipedia articles
+    </p>
+    <form action="submit_search">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="mb-3">
+                    <input type="text" name="search_text" id="search_text" class="form-control" placeholder="Enter search text">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row mb-2 justify-content-center">
+            <label class="col-sm-2"><b>Output: </b></label>
+            <div class="col-sm-4 align-self-center justify-content-center">
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="summary" value="summary" id="btn-radio-1" checked>
+                    <label class="form-check-label small" for="btn-radio-1">Summary Only</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="summary" value="full" id="btn-radio-2">
+                    <label class="form-check-label small" for="btn-radio-2">Full Article</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mb-4 justify-content-center">
+            <label class="col-sm-2"><b>Search Type: </b></label>
+            <div class="col-sm-4 align-self-center">
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="cache_option" value="yes" id="btn-radio-cache-1" checked>
+                    <label class="form-check-label small" for="btn-radio-cache-1">Use Cache</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="cache_option" value="no" id="btn-radio-cache-2">
+                    <label class="form-check-label small" for="btn-radio-cache-2">New Search</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
