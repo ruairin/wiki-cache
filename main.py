@@ -8,9 +8,7 @@
 """
 
 from flask import Flask, render_template, request
-import paramiko
 import json
-from config import read_config
 import db
 import wiki
 
@@ -19,10 +17,6 @@ import wiki
 app = Flask(__name__)
 app.config['ENV'] = "Development"
 app.config['DEBUG'] = True
-
-# Read the configuration for the wikipedia search script
-# from the config.yml file
-config = read_config('wiki_search_script')
 
 
 # Route to the default page for the application
@@ -64,7 +58,6 @@ def submit_search():
         article_source = 'Cache'
     else:
         result = wiki.search_wikipedia(search_string)
-        print(result)
 
         # Note: the script output (in 'result' variable) is the output of json.dumps() in the wiki.py script
         # (i.e.a string). Use json.loads() to convert the json string to a dict

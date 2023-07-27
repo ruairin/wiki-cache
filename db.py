@@ -3,12 +3,10 @@
 # @ about: functions for database interaction (searching, inserting/updating records)
 """
 
-
-from config import read_config
 import psycopg2
-
-# Read the mysql configuration from config.yml file
-config = read_config('postgres')
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def search(search_string):
@@ -28,12 +26,11 @@ def search(search_string):
     search_string = search_string.replace(r"'", r"\'")
 
     try:
-        # Connect to the database using credentials read from config file
-        connection = psycopg2.connect(host=config['host'],
-                                      port=config['port'],
-                                      database=config['db_name'],
-                                      user=config['username'],
-                                      password=config['password'])
+        connection = psycopg2.connect(host=os.environ.get("DB_HOST"),
+                                      port=os.environ.get("DB_PORT"),
+                                      database=os.environ.get("DB_NAME"),
+                                      user=os.environ.get("DB_USER"),
+                                      password=os.environ.get("DB_PASSWORD"))
 
         if connection:
             # create sql query to search the DB for records matching the search string
@@ -86,11 +83,11 @@ def insert(search_string, results):
 
     try:
         # Connect to the database using credentials read from config file
-        connection = psycopg2.connect(host=config['host'],
-                                      port=config['port'],
-                                      database=config['db_name'],
-                                      user=config['username'],
-                                      password=config['password'])
+        connection = psycopg2.connect(host=os.environ.get("DB_HOST"),
+                                      port=os.environ.get("DB_PORT"),
+                                      database=os.environ.get("DB_NAME"),
+                                      user=os.environ.get("DB_USER"),
+                                      password=os.environ.get("DB_PASSWORD"))
         if connection:
             # Create the sql query to insert the record
             # Note: the results column is updated if there's a duplicate entry.
