@@ -1,6 +1,6 @@
 """
 # @ author: ruairin
-# @ about: Main flask file for CT5169 Assignment 01
+# @ about: Main flask file for wikipedia search cache app
 # @ usage: 1. Consult readme.md for setup instructions
 #          2. Run this main.py file
 #          3. Load the app in a web browser (default is 127.0.0.1:5000
@@ -11,13 +11,22 @@ from flask import Flask, render_template, request
 import json
 import db
 import wiki
+from werkzeug.middleware.proxy_fix import ProxyFix
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Set flask configuration
 # set app name to main
 app = Flask(__name__)
-app.config['ENV'] = "Development"
-app.config['DEBUG'] = True
 
+# For deploying behind a reverse proxy:
+# https://flask.palletsprojects.com/en/2.3.x/deploying/proxy_fix/
+if os.environ.get("PROXY") == 'true':
+    print('here')
+    app.wsgi_app = ProxyFix(
+        app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+    )
 
 # Route to the default page for the application
 @app.route('/')

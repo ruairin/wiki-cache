@@ -3,3 +3,5 @@
 .env
 config.yml
 docker-compose-DB.dev.yml
+
+wiki-cache.code-workspace
