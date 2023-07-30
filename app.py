@@ -13,6 +13,7 @@ import db
 import wiki
 from werkzeug.middleware.proxy_fix import ProxyFix
 import os
+from waitress import serve
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -93,3 +94,4 @@ def submit_search():
 
 if __name__ == '__main__':
     app.run()
+    # serve(app, host='0.0.0.0', port=5000)
