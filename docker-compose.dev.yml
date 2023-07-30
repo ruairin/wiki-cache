@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+
+  # postgres:
+  #   image: postgres:15
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     POSTGRES_USER: ${DB_USER}
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
+  #     POSTGRES_DB: ${DB_NAME}
+  #     PGUSER: ${DB_USER}
+  #   ports:
+  #     - '15432:5432'
+  #   volumes:
+  #     - ./db/data/:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: sh -c "pg_isready"
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 10
+
+  wikicache:
+    build:
+      # Get image details from Dockerfile in ./
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    env_file:
+      - .env
+    # depends_on:
+    #   postgres:
+    #     condition: service_healthy
+    ports:
+      - '5000:5000'
+    volumes:
+      - './:/app'
