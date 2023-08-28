@@ -4,10 +4,10 @@
 The application allows the user to enter a search term and presents the text content of the articles matching the search term on www.wikipedia.com. The search results can be cached so that if the same search term is used again, the results can be quickly displayed by loading from the cache.
 
 The main features of the application are as follows:
-- The is implemented using the Flask Python framework
+- The application is implemented using the Flask Python framework
 - The results cache is implemented using a PostgreSQL database
 - The search operation is carried out using the python wikipedia module
-- The Bootstrap framework is used for page styline
+- The Bootstrap framework is used for page styling
 
 # Application Organisation
 
