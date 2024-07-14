@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS wikicache;
+CREATE DATABASE wikicache;
+CREATE TABLE CACHE (search_string VARCHAR(255) PRIMARY KEY, results TEXT);
